@@ -199,7 +199,7 @@ export const LogPage: NextPage = () => {
       pathname: router.pathname,
       query: {
         ...router.query,
-        q: cleanEditorValue(editorValue),
+        q: editorValue,
         s: undefined,
         te: undefined,
       },
