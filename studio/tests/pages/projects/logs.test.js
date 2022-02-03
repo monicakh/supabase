@@ -322,7 +322,7 @@ test('custom sql querying', async () => {
     expect(editor).toBeTruthy()
   })
   editor = container.querySelector('.monaco-editor')
-  userEvent.type(editor, 'select count(*) as my_count from edge_logs')
+  userEvent.type(editor, 'select \ncount(*) as my_count \nfrom edge_logs')
   // should show sandbox warning alert
   await waitFor(() => screen.getByText(/restricted to a 7 day querying window/))
 
@@ -330,6 +330,7 @@ test('custom sql querying', async () => {
   userEvent.click(screen.getByText('Run'))
   await waitFor(
     () => {
+      expect(get).not.toHaveBeenCalledWith(expect.stringContaining(encodeURI('\n')))
       expect(get).toHaveBeenCalledWith(expect.stringContaining('sql='))
       expect(get).toHaveBeenCalledWith(expect.stringContaining('select'))
       expect(get).toHaveBeenCalledWith(expect.stringContaining('edge_logs'))
