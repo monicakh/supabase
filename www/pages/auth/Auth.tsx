@@ -28,8 +28,15 @@ import SectionContainer from '~/components/Layouts/SectionContainer'
 import APISection from '~/components/Sections/APISection'
 import GithubExamples from '~/components/Sections/GithubExamples'
 import ProductHeader from '~/components/Sections/ProductHeader'
+import AuthProviders from '~/data/auth.json'
 
-function AuthPage() {
+type Props = {
+  darkMode: boolean
+}
+
+function AuthPage(props: Props) {
+  const { darkMode } = props
+
   // base path for images
   const { basePath } = useRouter()
 
@@ -101,18 +108,6 @@ function AuthPage() {
             <div className="mb-10 lg:mb-0 col-span-12 lg:col-span-3">
               <p className="mb-4">
                 <div className="flex items-center flex-wrap xl:w-64">
-                  <img
-                    className="mb-2 mr-2"
-                    src={`${basePath}/images/product/auth/google-icon.svg`}
-                    width={21}
-                    alt="google auth login icon"
-                  />
-                  <img
-                    className="mb-2 mr-2"
-                    src={`${basePath}/images/product/auth/facebook-icon.svg`}
-                    width={21}
-                    alt="facebook auth login icon"
-                  />
                   <div className="mb-2 mr-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -126,72 +121,16 @@ function AuthPage() {
                       />
                     </svg>
                   </div>
-                  <img
-                    className="mb-2 mr-2"
-                    src={`${basePath}/images/product/auth/gitlab-icon.svg`}
-                    width={21}
-                    alt="gitlab auth login icon"
-                  />
-                  <img
-                    className="mb-2 mr-2"
-                    src={`${basePath}/images/product/auth/bitbucket-icon.svg`}
-                    width={21}
-                    alt="bitbucket auth login icon"
-                  />
-                  <img
-                    className="mb-2 mr-2"
-                    src={`${basePath}/images/product/auth/twitter-icon.svg`}
-                    width={21}
-                    alt="twitter auth login icon"
-                  />
-                  <img
-                    className="mb-2 mr-2"
-                    src={`${basePath}/images/product/auth/apple-icon.svg`}
-                    width={21}
-                    alt="apple auth login icon"
-                  />
-                  <img
-                    className="mb-2 mr-2"
-                    src={`${basePath}/images/product/auth/discord-icon.svg`}
-                    width={21}
-                    alt="discord auth login icon"
-                  />
-                  <img
-                    className="mb-2 mr-2"
-                    src={`${basePath}/images/product/auth/microsoft-icon.svg`}
-                    width={21}
-                    alt="microsoft auth login icon"
-                  />
-                  <img
-                    className="mb-2 mr-2"
-                    src={`${basePath}/images/product/auth/messagebird-icon.svg`}
-                    width={21}
-                    alt="messagebird auth login icon"
-                  />
-                  <img
-                    className="mb-2 mr-2"
-                    src={`${basePath}/images/product/auth/twilio-icon.svg`}
-                    width={21}
-                    alt="twilio auth login icon"
-                  />
-                  <img
-                    className="mb-2 mr-2"
-                    src={`${basePath}/images/product/auth/twitch-icon.svg`}
-                    width={21}
-                    alt="twitch auth login icon"
-                  />
-                  <img
-                    className="mb-2 mr-2"
-                    src={`${basePath}/images/product/auth/spotify-icon.svg`}
-                    width={21}
-                    alt="spotify auth login icon"
-                  />
-                  <img
-                    className="mb-2 mr-2"
-                    src={`${basePath}/images/product/auth/slack-icon.svg`}
-                    width={21}
-                    alt="slack auth login icon"
-                  />
+                  {AuthProviders.map((auth) => {
+                    return (
+                      <img
+                        className="mb-2 mr-2"
+                        src={`${basePath}/images/product/auth/${auth.name}-icon.svg`}
+                        width={21}
+                        alt={`${auth.name} auth login icon`}
+                      />
+                    )
+                  })}
                 </div>
               </p>
               <Typography.Title level={4}>All the social providers</Typography.Title>
@@ -322,7 +261,7 @@ function AuthPage() {
         <SectionContainer>
           <div className="grid grid-cols-12 lg:gap-16">
             <div className="order-last col-span-12 lg:order-first lg:col-span-6 mt-8 lg:mt-0">
-              <AuthComponentExample />
+              <AuthComponentExample darkMode={darkMode} />
             </div>
             <div className="col-span-12 lg:col-span-6 lg:col-start-7 xl:col-span-4 xl:col-start-8">
               <Space className="mb-4">

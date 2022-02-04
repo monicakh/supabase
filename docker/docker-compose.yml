@@ -14,8 +14,8 @@ services:
     ports:
       - ${STUDIO_PORT}:3000/tcp
     environment:
-      SUPABASE_URL: http://kong:8000
-      STUDIO_PG_META_URL: http://meta:8080
+      SUPABASE_URL: ${KONG_URL}
+      STUDIO_PG_META_URL: ${META_URL}
       SUPABASE_ANON_KEY: ${ANON_KEY}
       SUPABASE_SERVICE_KEY: ${SERVICE_ROLE_KEY}
 
@@ -80,14 +80,14 @@ services:
     restart: unless-stopped
     environment:
       PGRST_DB_URI: postgres://postgres:${POSTGRES_PASSWORD}@db:5432/postgres
-      PGRST_DB_SCHEMA: public,storage
+      PGRST_DB_SCHEMAS: public,storage
       PGRST_DB_ANON_ROLE: anon
       PGRST_JWT_SECRET: ${JWT_SECRET}
       PGRST_DB_USE_LEGACY_GUCS: "false"
 
   realtime:
     container_name: supabase-realtime
-    image: supabase/realtime:v0.19.3
+    image: supabase/realtime:v0.21.0
     depends_on:
       - db
     restart: unless-stopped

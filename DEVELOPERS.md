@@ -4,6 +4,7 @@
 * [Installing Dependencies](#Installing-Dependencies)
 * [Building Supabase](#Building-Supabase)
 * [Start a Development Server](#Start-a-Development-Server)
+* [Build in Public](#Build-in-Public)
 
 ## Development Setup
 
@@ -20,7 +21,7 @@ machine:
 
 * [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 
-### Forking Supabase on Github
+### Forking Supabase on GitHub
 
 To contribute code to Supabase, you must fork the [Supabase Repository](https://github.com/supabase/supabase). After you fork the repository, you may now begin editing the source code.
 
@@ -28,7 +29,7 @@ To contribute code to Supabase, you must fork the [Supabase Repository](https://
 
 To build Supabase, you clone the source code repository:
 
-2. Clone your Github forked repository:
+2. Clone your GitHub forked repository:
    ```sh
    git clone https://github.com/<github_username>/supabase.git
    ```
@@ -148,3 +149,9 @@ To debug code, and to see changes in real time, it is often useful to have a loc
     ```
 
 For more information on Supabase Studio, see the [Supabase Studio readme](./studio/README.md).
+
+## Build in Public
+
+Videos of building supabase made in public.
+
+- [Contributing to open source as  a beginner - Supabase](https://youtu.be/OAqhsylUuWg) - [@imskr](https://github.com/imskr)

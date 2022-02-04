@@ -31,8 +31,8 @@ const data: CommunityItem[] = [
   },
   {
     title: 'GitHub',
-    stat: '24,000+',
-    statLabel: 'Github stars',
+    stat: '26,000+',
+    statLabel: 'GitHub stars',
     img: 'github.png',
     invertImgDarkMode: true,
     detail: () => (
@@ -43,7 +43,7 @@ const data: CommunityItem[] = [
   },
   {
     title: 'Twitter',
-    stat: '20,000+',
+    stat: '22,000+',
     statLabel: 'Followers',
     img: 'twitter.png',
     detail: () => (
