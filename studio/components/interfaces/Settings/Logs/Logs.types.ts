@@ -3,7 +3,7 @@ interface Metadata {
 }
 
 export type LogType = 'database' | 'api' 
-export type LogSearchCallback = (filters: { query: string; from: string }) => void
+export type LogSearchCallback =   (filters: { query: string; from?: string, fromMicro?: number }) => void
 export interface LogData {
   id: string
   timestamp: number
