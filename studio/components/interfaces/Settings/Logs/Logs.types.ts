@@ -1,7 +1,9 @@
 interface Metadata {
   [key: string]: string | number | Object | Object[]
 }
-export type LogSearchCallback =   (filters: { query: string; from: string }) => void
+
+export type LogType = 'database' | 'api' 
+export type LogSearchCallback = (filters: { query: string; from: string }) => void
 export interface LogData {
   id: string
   timestamp: number
@@ -12,6 +14,7 @@ export interface LogData {
 export interface LogTemplate {
   label?: string
   mode: 'custom' | 'simple'
+  for?: LogType[]
   searchString: string
 }
 

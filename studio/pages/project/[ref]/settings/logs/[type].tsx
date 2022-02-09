@@ -15,7 +15,7 @@ import {
 
 import { withAuth } from 'hooks'
 import { get } from 'lib/common/fetch'
-import { API_URL, LOG_TYPE_LABEL_MAPPING } from 'lib/constants'
+import { API_URL } from 'lib/constants'
 import { SettingsLayout } from 'components/layouts/'
 import CodeEditor from 'components/ui/CodeEditor'
 import {
@@ -27,6 +27,8 @@ import {
   TEMPLATES,
   LogData,
   LogSearchCallback,
+  LogType,
+  LOG_TYPE_LABEL_MAPPING,
 } from 'components/interfaces/Settings/Logs'
 import { uuidv4 } from 'lib/helpers'
 import useSWRInfinite from 'swr/infinite'
@@ -63,7 +65,7 @@ export const LogPage: NextPage = () => {
     timestamp_start: '',
     timestamp_end: '',
   })
-  const title = `Logs - ${LOG_TYPE_LABEL_MAPPING[type as string]}`
+  const title = `Logs - ${LOG_TYPE_LABEL_MAPPING[type as LogType]}`
   const checkIfSelectQuery = (value: string) =>
     logsCustomSql && value.toLowerCase().includes('select') ? true : false
   const isSelectQuery = checkIfSelectQuery(editorValue)
@@ -243,7 +245,7 @@ export const LogPage: NextPage = () => {
           isCustomQuery={mode === 'custom'}
           isLoading={isValidating}
           newCount={newCount}
-          templates={TEMPLATES}
+          templates={TEMPLATES.filter((template) => template.for?.includes(type as LogType))}
           onRefresh={handleRefresh}
           onSearch={handleSearch}
           defaultSearchValue={params.search_query}
